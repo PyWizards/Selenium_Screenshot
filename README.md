@@ -1,6 +1,6 @@
 **Slenium Screenshot :**
 
-The Selenium Screenshot is used to clipped Html Element usinf Selenium Webdriver
+The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
 
 **Installations :**
 
