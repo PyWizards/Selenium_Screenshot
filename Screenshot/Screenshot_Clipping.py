@@ -9,7 +9,7 @@ class Screenshot:
         pass
 
 
-    def Full_Scrrenshot(self,driver,filename):
+    def Full_Scrrenshot(self,driver,filename,elements=None):
 
         print("Starting chrome full page screenshot workaround ...")
 
@@ -17,7 +17,6 @@ class Screenshot:
         total_height = driver.execute_script("return document.body.parentNode.scrollHeight")
         viewport_width = driver.execute_script("return document.body.clientWidth")
         viewport_height = driver.execute_script("return window.innerHeight")
-        # print("Total: ({0}, {1}), Viewport: ({2},{3})".format(total_width, total_height,viewport_width,viewport_height))
         rectangles = []
 
         i = 0
@@ -49,7 +48,17 @@ class Screenshot:
             if not previous is None:
                 driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
                 time.sleep(3)
-
+                try:
+                    for e in elements:
+                        sp_xpath=e.split('=')
+                        if 'id' in e.lower():
+                            driver.execute_script("document.getElementById('{}').setAttribute('style', 'display:none;');".format(sp_xpath[1]))
+                        elif 'class' in e.lower():
+                            driver.execute_script("document.getElementByClassName('{}').setAttribute('style', 'display:none;');".format(sp_xpath[1]))
+                        else:
+                            print('For Hiding Element works with ID and Class Selector only')
+                except Exception as E:
+                    pass
             file_name = "part_{0}.png".format(part)
             driver.get_screenshot_as_file(file_name)
             screenshot = Image.open(file_name)
