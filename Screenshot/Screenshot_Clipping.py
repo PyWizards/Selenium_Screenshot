@@ -9,10 +9,9 @@ class Screenshot:
         pass
 
 
-    def Full_Scrrenshot(self,driver,filename,elements=None):
+    def Full_Scrrenshot(self,driver,filename,imagename='selenium_shot.png',elements=None):
 
         print("Starting chrome full page screenshot workaround ...")
-
         total_width = driver.execute_script("return document.body.offsetWidth")
         total_height = driver.execute_script("return document.body.parentNode.scrollHeight")
         viewport_width = driver.execute_script("return document.body.clientWidth")
@@ -76,14 +75,14 @@ class Screenshot:
             part = part + 1
             previous = rectangle
 
-        filename=filename+'\\'+'selenium_shot.png'
+        filename=filename+'\\'+imagename
         stitched_image.save(filename)
         # print("Finishing chrome full page screenshot workaround...")
         print('Full Screenshot Image Saved at: ',filename)
         return filename
 
     def Get_element(self,driver,element,Save_loc):
-        image=self.Full_Scrrenshot(driver,Save_loc)
+        image=self.Full_Scrrenshot(driver,Save_loc,'clipping_shot.png')
         location = element.location
         size = element.size
         x = location['x']
