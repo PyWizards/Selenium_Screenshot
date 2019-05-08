@@ -1,3 +1,4 @@
+|PyPI version| |Docs badge| |Chat badge| |Build Status| |Code Of Conduct| |Mailing Lists| |License|
 **Slenium Screenshot :**
 
 The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
