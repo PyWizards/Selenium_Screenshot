@@ -1,6 +1,6 @@
-from setuptools import find_packages, setup
 import os
 
+from setuptools import find_packages, setup
 
 # The directory containing this file
 HERE = os.path.abspath(os.path.dirname(__file__))
@@ -29,10 +29,5 @@ setup(
     include_package_data=True,
     install_requires=["Pillow", "selenium"],
     packages=find_packages(exclude=("tests",)),
-    # entry_points={
-    #     "console_scripts": [
-    #         "realpython=reader.__main__:main",
-    #     ]
-    # },
 
 )
