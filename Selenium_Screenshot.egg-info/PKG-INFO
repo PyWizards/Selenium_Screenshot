@@ -1,14 +1,16 @@
 Metadata-Version: 2.1
 Name: Selenium-Screenshot
-Version: 1.1.0
+Version: 1.5.0
 Summary: This package is used to Clipped Images of Html Elements of Selenium Webdriver
 Home-page: https://github.com/sam4u3/Selenium_Screenshot
 Author: Sayar Mendis
 Author-email: sayarmendis26@gmail.com
 License: MIT
-Description: **Slenium Screenshot :**
+Description: 
         
-        The Selenium Screenshot is used to clipped Html Element usinf Selenium Webdriver
+        **Slenium Screenshot :**
+        
+        The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
         
         **Installations :**
         
@@ -22,18 +24,15 @@ Description: **Slenium Screenshot :**
         ```python
         from Screenshot import Screenshot_Clipping
         from selenium import webdriver
-        import os
+        
+        
         
         ob=Screenshot_Clipping.Screenshot()
         driver = webdriver.Chrome()
-        url = "https://github.com/sam4u3/Selenium_Screenshot"
+        url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
         driver.get(url)
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        element=driver.find_element_by_class_name('pagehead-actions')
-        # img_url=ob.Get_element(driver,element,r'E:\Sayar_python\Selenium\test')
-        img_url=ob.Full_Scrrenshot(driver,r'E:\Sayar_python\Selenium\test')
+        img_url=ob.full_Screenshot(driver, save_path=r'.', image_name='Myimage.png')
         print(img_url)
-        
         driver.close()
         
         driver.quit()
@@ -44,25 +43,42 @@ Description: **Slenium Screenshot :**
         ````python
         from Screenshot import Screenshot_Clipping
         from selenium import webdriver
-        import os
+        
         
         ob=Screenshot_Clipping.Screenshot()
         driver = webdriver.Chrome()
-        url = "https://github.com/sam4u3/Selenium_Screenshot"
+        url = "https://github.com/sam4u3/Selenium_Screenshot/blob/master/Screenshot/Screenshot_Clipping.py"
         driver.get(url)
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        element=driver.find_element_by_class_name('pagehead-actions')
-        img_url=ob.Get_element(driver,element,r'E:\Sayar_python\Selenium\test')
+        
+        element=driver.find_element_by_class_name('signup-prompt')
+        img_url=ob.get_element(driver, element, r'.')
         print(img_url)
         
         driver.close()
         
         driver.quit()
+        
         ````
         
+        **For Html Element Clipping with Hiding Element :**
+        ````python
+        from Screenshot import Screenshot_Clipping
+        from selenium import webdriver
         
         
+        ob=Screenshot_Clipping.Screenshot()
+        driver = webdriver.Chrome()
+        url = "https://github.com/sam4u3"
+        driver.get(url)
+        Hide_elements=['class=avatar width-full height-full avatar-before-user-status'] # Use full class name
+        img_url=ob.full_Screenshot(driver, save_path=r'.', elements=Hide_elements, image_name='Myimage.png')
+        print(img_url)
+        driver.close()
         
+        driver.quit()
+        
+        
+        ````
         
         **Contact Information :**
         

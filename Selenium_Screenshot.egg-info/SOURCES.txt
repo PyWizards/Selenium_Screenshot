@@ -1,6 +1,7 @@
 LICENSE
 MANIFEST.in
 README.md
+setup.cfg
 setup.py
 Screenshot/Screenshot_Clipping.py
 Screenshot/__init__.py

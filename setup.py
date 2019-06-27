@@ -13,7 +13,7 @@ with open(os.path.join(HERE, "README.md")) as fid:
 # This call to setup() does all the work
 setup(
     name="Selenium-Screenshot",
-    version="1.3.0",
+    version="1.5.0",
     description="This package is used to Clipped Images of Html Elements of Selenium Webdriver",
     long_description=README,
     long_description_content_type="text/markdown",
