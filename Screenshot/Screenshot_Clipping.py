@@ -86,7 +86,7 @@ class Screenshot:
             os.remove(file_name)
             part = part + 1
             previous = rectangle
-        save_path = save_path + '\\' + image_name
+        save_path = os.path.abspath(save_path + '\\' + image_name)
         stitched_image.save(save_path)
         print('Full Screenshot Image Saved at: ', save_path)
         return save_path
@@ -117,7 +117,7 @@ class Screenshot:
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
         uid = str(uuid.uuid4())
-        img_url = save_location + r'\\' + uid + '.png'
+        img_url = os.path.abspath(save_location + r'\\' + uid + '.png')
         image_object.save(img_url)
         return img_url
 
