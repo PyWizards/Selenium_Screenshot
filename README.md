@@ -2,6 +2,11 @@
 
 **Slenium Screenshot :**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://pepy.tech/badge/selenium-screenshot)](https://pepy.tech/project/selenium-screenshot)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
+
 The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
 
 **Installations :**
