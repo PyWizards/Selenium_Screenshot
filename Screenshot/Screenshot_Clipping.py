@@ -33,7 +33,7 @@ class Screenshot:
         Usage:
             Capture full web page as a image
         Args:
-            driver(str) : The path of chromedriver
+            driver(webdriver) : The path of chromedriver
             save_path(str) : The path where to save full screenshot
             image_name(str) : Name of image to be saved
             elements(list) : List of elements to be hide
@@ -48,6 +48,7 @@ class Screenshot:
         total_height = driver.execute_script("return document.body.parentNode.scrollHeight")
         viewport_width = driver.execute_script("return document.body.clientWidth")
         viewport_height = driver.execute_script("return window.innerHeight")
+
         rectangles = []
 
         self.hide_elements(driver, elements)
