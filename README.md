@@ -1,5 +1,4 @@
 
-
 **Slenium Screenshot :**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -8,6 +7,11 @@
 
 
 The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
+
+**Supported WebDriver :**
+
+- Chromedriver
+- IEDriverServer
 
 **Installations :**
 
@@ -76,6 +80,10 @@ driver.quit()
 
 
 ````
+**Limitation :**
+
+- Screenshot can take only 10000 of height of website
+
 
 **Contact Information :**
 

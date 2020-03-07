@@ -3,6 +3,7 @@ import time
 import uuid
 
 from PIL import Image
+from selenium import webdriver
 
 
 class Screenshot:
@@ -28,12 +29,13 @@ class Screenshot:
         """
         pass
 
-    def full_Screenshot(self, driver, save_path='', image_name='selenium_full_screenshot.png', elements=None):
+    def full_Screenshot(self, driver, save_path='', image_name='selenium_full_screenshot.png', elements=None,
+                        load_wait_time=5):
         """
         Usage:
             Capture full web page as a image
         Args:
-            driver(webdriver) : The path of chromedriver
+            driver(object) : The path of chromedriver
             save_path(str) : The path where to save full screenshot
             image_name(str) : Name of image to be saved
             elements(list) : List of elements to be hide
@@ -43,54 +45,75 @@ class Screenshot:
             Element hide (Exception) : When class or id not specified to hide element
 
         """
-        print("Starting chrome full page screenshot Capturing ...")
-        total_width = driver.execute_script("return document.body.offsetWidth")
-        total_height = driver.execute_script("return document.body.parentNode.scrollHeight")
-        viewport_width = driver.execute_script("return document.body.clientWidth")
-        viewport_height = driver.execute_script("return window.innerHeight")
+        image_name = os.path.abspath(save_path + '/' + image_name)
 
-        rectangles = []
-
-        self.hide_elements(driver, elements)
-
-        i = 0
-        while i < total_height:
-            ii = 0
-            top_height = i + viewport_height
-            if top_height > total_height:
-                top_height = total_height
-            while ii < total_width:
-                top_width = ii + viewport_width
-                if top_width > total_width:
-                    top_width = total_width
-                rectangles.append((ii, i, top_width, top_height))
-                ii = ii + viewport_width
-            i = i + viewport_height
-        stitched_image = Image.new('RGB', (total_width, total_height))
-        previous = None
-        part = 0
-
-        for rectangle in rectangles:
-            if not previous is None:
-                driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
-                time.sleep(3)
-            file_name = "part_{0}.png".format(part)
-            driver.get_screenshot_as_file(file_name)
-            screenshot = Image.open(file_name)
-
-            if rectangle[1] + viewport_height > total_height:
-                offset = (rectangle[0], total_height - viewport_height)
+        final_page_height = 0
+        original_size = driver.get_window_size()
+        while True:
+            page_height = driver.execute_script("return document.body.scrollHeight")
+            if page_height != final_page_height and final_page_height <= 10000:
+                driver.execute_script("window.scrollTo(0, {})".format(page_height))
+                time.sleep(load_wait_time)
+                final_page_height = page_height
             else:
-                offset = (rectangle[0], rectangle[1])
-            stitched_image.paste(screenshot, offset)
-            del screenshot
-            os.remove(file_name)
-            part = part + 1
-            previous = rectangle
-        save_path = os.path.abspath(os.path.join(save_path, image_name))
-        stitched_image.save(save_path)
-        print('Full Screenshot Image Saved at: ', save_path)
-        return save_path
+                break
+
+        if isinstance(driver, webdriver.Ie):
+            self.hide_elements(driver, elements)
+            required_width = driver.execute_script('return document.body.parentNode.scrollWidth')
+            driver.set_window_size(required_width, final_page_height)
+            driver.save_screenshot(image_name)
+            driver.set_window_size(original_size['width'], original_size['height'])
+            return image_name
+        elif isinstance(driver, webdriver.Chrome):
+            total_width = driver.execute_script("return document.body.offsetWidth")
+            total_height = driver.execute_script("return document.body.parentNode.scrollHeight")
+            viewport_width = driver.execute_script("return document.body.clientWidth")
+            viewport_height = driver.execute_script("return window.innerHeight")
+            driver.execute_script("window.scrollTo(0, 0)")
+            time.sleep(2)
+            rectangles = []
+
+            self.hide_elements(driver, elements)
+            i = 0
+            while i < total_height:
+                ii = 0
+                top_height = i + viewport_height
+                if top_height > total_height:
+                    top_height = total_height
+                while ii < total_width:
+                    top_width = ii + viewport_width
+                    if top_width > total_width:
+                        top_width = total_width
+                    rectangles.append((ii, i, top_width, top_height))
+                    ii = ii + viewport_width
+                i = i + viewport_height
+            stitched_image = Image.new('RGB', (total_width, total_height))
+            previous = None
+            part = 0
+
+            for rectangle in rectangles:
+                if not previous is None:
+                    driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
+                    time.sleep(3)
+                file_name = "part_{0}.png".format(part)
+                driver.get_screenshot_as_file(file_name)
+                screenshot = Image.open(file_name)
+                if rectangle[1] + viewport_height > total_height:
+                    offset = (rectangle[0], total_height - viewport_height)
+                else:
+                    offset = (rectangle[0], rectangle[1])
+                stitched_image.paste(screenshot, offset)
+                del screenshot
+                os.remove(file_name)
+                part = part + 1
+                previous = rectangle
+            save_path = os.path.abspath(os.path.join(save_path, image_name))
+            stitched_image.save(save_path)
+            return save_path
+
+
+
 
     def get_element(self, driver, element, save_location):
         """
