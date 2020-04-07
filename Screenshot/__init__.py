@@ -1,1 +1,1 @@
-from Screenshot import Screenshot_Clipping
+from .Screenshot_Clipping import Screenshot
