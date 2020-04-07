@@ -1,8 +1,19 @@
 
-
 **Slenium Screenshot :**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://pepy.tech/badge/selenium-screenshot)](https://pepy.tech/project/selenium-screenshot)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![PyPI version](https://badge.fury.io/py/Selenium-Screenshot.svg)](https://badge.fury.io/py/Selenium-Screenshot)
+![Python package](https://github.com/sam4u3/Selenium_Screenshot/workflows/Python%20package/badge.svg)
+
+
 The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
+
+**Supported WebDriver :**
+
+- Chromedriver
+- IEDriverServer
 
 **Installations :**
 
@@ -71,8 +82,17 @@ driver.quit()
 
 
 ````
+**Limitation :**
+
+- Screenshot can take only 10000 of height of website
+
 
 **Contact Information :**
 
 [Email: sayarmendis26@gmail.com](mailto::sayarmendis26@gmail.com)
 
+**Donation :**
+
+If you have found my softwares to be of any use to you, do consider helping me pay my internet bills. This would encourage me to create many such softwares :)
+
+<a href="https://www.instamojo.com/@sayarmendis26/" target="_blank"><img src="https://www.soldermall.com/images/pic-online-payment.jpg" alt="Donate via Instamojo" title="Donate via instamojo" /></a>

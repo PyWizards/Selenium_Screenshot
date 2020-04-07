@@ -1,1 +1,1 @@
-from .Screenshot_Clipping import Screenshot
+__all__ = ["Screenshot_Clipping"]
