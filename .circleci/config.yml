@@ -1,39 +1,20 @@
-# Orb 'circleci/windows@2.2.0' resolved to 'circleci/windows@2.2.0'
-version: 2
-jobs:
-  build:
-    machine:
-      image: windows-server-2019-vs2019:stable
-    steps:
-    - checkout
-    - run:
-        command: python -m pip install --upgrade pip
-    - run:
-        command: pip install -r requirements.txt
-    - run:
-        command: pip install pytest
-        command: python -m py.test -v -s
-    resource_class: windows.medium
-    shell: powershell.exe -ExecutionPolicy Bypass
-workflows:
-  version: 2
-  workflow:
-    jobs:
-    - build
 
-# Original config.yml file:
-# version: 2.1 # Use version 2.1 to enable orb usage.
-# 
-# orbs:
-#   win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
-# 
-# jobs:
-#   build: # name of your job
-#     executor: win/default # executor type
-# 
-#     steps:
-#       # Commands are run in a Windows virtual machine environment
-#       - checkout
-#       - run: python -m pip install --upgrade pip
-#       - run: pip install -r requirements.txt
-#       - run: python -m unittest tests.test_TextExtractFunction
+
+        
+
+
+version: 2.1 # Use version 2.1 to enable orb usage.
+
+orbs:
+  win: circleci/windows@2.2.0 # The Windows orb give you everything you need to start using the Windows executor.
+
+jobs:
+  build: # name of your job
+    executor: win/default # executor type
+
+    steps:
+      # Commands are run in a Windows virtual machine environment
+      - checkout
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements.txt
+      - run: python -m unittest tests.test_TextExtractFunction
