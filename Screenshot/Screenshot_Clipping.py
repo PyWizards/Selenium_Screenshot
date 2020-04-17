@@ -115,7 +115,7 @@ class Screenshot:
 
 
 
-    def get_element(self, driver, element, save_location):
+    def get_element(self, driver, element, save_location, fname=None):
         """
          Usage:
              Capture Element screenshot as a image
@@ -141,7 +141,8 @@ class Screenshot:
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
         uid = str(uuid.uuid4())
-        img_url = os.path.abspath(os.path.join(save_location, f"{uid}.png"))
+        fname = uid if fname is None else uid
+        img_url = os.path.abspath(os.path.join(save_location, f"{fname}.png"))
         image_object.save(img_url)
         return img_url
 
