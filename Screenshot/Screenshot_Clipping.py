@@ -4,8 +4,6 @@ import uuid
 
 from PIL import Image
 from selenium import webdriver
-from selenium.webdriver.remote.webdriver import WebDriver
-from selenium.webdriver.remote.webelement import WebElement
 
 
 class Screenshot:
@@ -31,35 +29,34 @@ class Screenshot:
         """
         pass
 
-    def full_Screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
-                        elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5) -> str:
+    def full_Screenshot(self, driver, save_path='', image_name='selenium_full_screenshot.png', elements=None,
+                        load_wait_time=5):
         """
-        Take full screenshot of web page
+        Usage:
+            Capture full web page as a image
         Args:
-            driver: The Selenium web driver object
-            save_path: The path where to store screenshot
-            image_name: The name of screenshot image
-            elements: List of Xpath of elements to hide from web pages
-            is_load_at_runtime: Page Load at runtime
-            load_wait_time: The Wait time while loading full screen
-
+            driver(object) : The path of chromedriver
+            save_path(str) : The path where to save full screenshot
+            image_name(str) : Name of image to be saved
+            elements(list) : List of elements to be hide
         Returns:
-            str : The path of image
+            save_path (str) : The full path of saved image
+        Raises:
+            Element hide (Exception) : When class or id not specified to hide element
+
         """
         image_name = os.path.abspath(save_path + '/' + image_name)
 
         final_page_height = 0
         original_size = driver.get_window_size()
-
-        if is_load_at_runtime:
-            while True:
-                page_height = driver.execute_script("return document.body.scrollHeight")
-                if page_height != final_page_height and final_page_height <= 10000:
-                    driver.execute_script("window.scrollTo(0, {})".format(page_height))
-                    time.sleep(load_wait_time)
-                    final_page_height = page_height
-                else:
-                    break
+        while True:
+            page_height = driver.execute_script("return document.body.scrollHeight")
+            if page_height != final_page_height and final_page_height <= 10000:
+                driver.execute_script("window.scrollTo(0, {})".format(page_height))
+                time.sleep(load_wait_time)
+                final_page_height = page_height
+            else:
+                break
 
         if isinstance(driver, webdriver.Ie):
             self.hide_elements(driver, elements)
@@ -68,8 +65,7 @@ class Screenshot:
             driver.save_screenshot(image_name)
             driver.set_window_size(original_size['width'], original_size['height'])
             return image_name
-
-        else:
+        elif isinstance(driver, webdriver.Chrome):
             total_width = driver.execute_script("return document.body.offsetWidth")
             total_height = driver.execute_script("return document.body.parentNode.scrollHeight")
             viewport_width = driver.execute_script("return document.body.clientWidth")
@@ -116,14 +112,17 @@ class Screenshot:
             stitched_image.save(save_path)
             return save_path
 
-    def get_element(self, driver: WebDriver, element: WebElement, save_location: str) -> str:
+
+
+
+    def get_element(self, driver, element, save_location, fname=None):
         """
          Usage:
              Capture Element screenshot as a image
          Args:
-             driver: Web driver instance
-             element : The element on web page to be captured
-             save_location  : Path where to save image
+             driver(str) : The path of chromedriver
+             element (Iwebelement) : The element on web page to be captured
+             save_location (str) : Path where to save image
          Returns:
              img_url(str) : The path of image
          Raises:
@@ -142,18 +141,18 @@ class Screenshot:
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
         uid = str(uuid.uuid4())
-        img_url = os.path.abspath(os.path.join(save_location, f"{uid}.png"))
+        fname = uid if fname is None else uid
+        img_url = os.path.abspath(os.path.join(save_location, f"{fname}.png"))
         image_object.save(img_url)
         return img_url
 
-    @staticmethod
-    def hide_elements(driver: WebDriver, elements: list) -> None:
+    def hide_elements(self, driver, elements):
         """
          Usage:
              Hide elements from web page
          Args:
-             driver : The path of chromedriver
-             elements : The element on web page to be hide
+             driver(str) : The path of chromedriver
+             elements (list) : The element on web page to be hide
          Returns:
              N/A
          Raises:
