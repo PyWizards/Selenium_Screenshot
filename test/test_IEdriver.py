@@ -17,6 +17,6 @@ def test_IE():
     url = 'http://yandex.ru'
     driver.get(url)
     time.sleep(10)
-    sc.full_Screenshot(driver, save_path='.', image_name='testimage.png')
+    sc.full_Screenshot(driver, save_path='.', image_name='testimage.png',load_wait_time=5,is_load_at_runtime=True)
     driver.close()
     driver.quit()
