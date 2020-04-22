@@ -16,9 +16,8 @@ def test_full_screenshot():
     # url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
     url = 'http://yandex.ru'
     driver.get(url)
-    img_url = ob.full_Screenshot(driver, save_path=r'.',
-                                 image_name='Myimage.png')
-    # os.remove(img_url)
+    img_url = ob.full_Screenshot(driver, save_path=r'.',image_name='Myimage.png',is_load_at_runtime=True,load_wait_time=3)
+    os.remove(img_url)
     driver.close()
 
     driver.quit()

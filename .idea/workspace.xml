@@ -2,136 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8579517-b59c-4342-987e-5b918c743b5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/40004772.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Selenium.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Selenium.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screenshot/Screenshot_Clipping.py" beforeDir="false" afterPath="$PROJECT_DIR$/Screenshot/Screenshot_Clipping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Selenium_Screenshot.egg-info/PKG-INFO" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Selenium_Screenshot.egg-info/SOURCES.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Selenium_Screenshot.egg-info/dependency_links.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Selenium_Screenshot.egg-info/requires.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Selenium_Screenshot.egg-info/top_level.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/Screenshot/Screenshot_Clipping.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/lib/Screenshot/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/IEDriverServer_x64_3.150.1.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/Iefix.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/msedgedriver.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_IEdriver.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_IEdriver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_chrome_driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_chrome_driver.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Screenshot/Screenshot_Clipping.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="707">
-              <caret line="54" column="13" selection-start-line="41" selection-end-line="54" selection-end-column="13" />
-              <folding>
-                <element signature="e#92#134#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="396">
-                <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-                <folding>
-                  <element signature="e#0#42#0" expanded="true" />
-                  <element signature="e#0#42#0" expanded="true" />
-                  <element signature="e#0#42#0" expanded="true" />
-                </folding>
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="Git.Settings">
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/Screenshot/Screenshot_Clipping.py" />
-        <option value="$PROJECT_DIR$/test/test.py" />
-        <option value="$PROJECT_DIR$/README.md" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="224" />
-    <option name="y" value="178" />
-    <option name="width" value="640" />
-    <option name="height" value="754" />
-  </component>
+  <component name="ProjectId" id="1aDC4j9eoSouDWuA3ygQm6IeH1m" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Selenium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Selenium" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PMT Modularized" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test/test_chrome_driver.py" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python tests.pytest in test_IEdriver.py">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Selenium" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -153,8 +63,45 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest in test_IEdriver.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Selenium" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_IEdriver.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_chrome_driver.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="Selenium" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test/test_chrome_driver.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python tests.pytest in test_chrome_driver.py" />
+      <item itemvalue="Python tests.pytest in test_IEdriver.py" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in test_IEdriver.py" />
+        <item itemvalue="Python tests.pytest in test_chrome_driver.py" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -170,30 +117,84 @@
       <option name="presentableId" value="Default" />
       <updated>1558593290024</updated>
     </task>
+    <task id="LOCAL-00001" summary="init updated">
+      <created>1586260866746</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586260866746</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init updated">
+      <created>1586260905301</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586260905301</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1010" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09220985" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3295325" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3990878" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3295325" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="init updated" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586262314346">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1586262314346" />
+    <state x="496" y="219" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586262024490">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="496" y="219" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.834@0.0.1536.834" timestamp="1586262024490" />
+    <state x="413" y="9" key="CommitChangelistDialog2" timestamp="1586260903295">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="413" y="9" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1586260903295" />
+    <state x="147" y="66" key="DiffContextDialog" timestamp="1586260828691">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="147" y="66" key="DiffContextDialog/0.0.1536.834@0.0.1536.834" timestamp="1586260828691" />
+    <state x="548" y="172" key="FileChooserDialogImpl" timestamp="1586262280332">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="548" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1586262280332" />
+    <state width="1515" height="352" key="GridCell.Tab.0.bottom" timestamp="1586263282210">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="352" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586263282210" />
+    <state width="1515" height="352" key="GridCell.Tab.0.center" timestamp="1586263282209">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="352" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586263282209" />
+    <state width="1515" height="352" key="GridCell.Tab.0.left" timestamp="1586263282209">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="352" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586263282209" />
+    <state width="1515" height="352" key="GridCell.Tab.0.right" timestamp="1586263282209">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1515" height="352" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586263282209" />
+    <state x="480" y="132" key="MultipleFileMergeDialog" timestamp="1586260924823">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="480" y="132" key="MultipleFileMergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1586260924823" />
+    <state x="270" y="59" key="SettingsEditor" timestamp="1586261370749">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="270" y="59" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1586261370749" />
+    <state x="571" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586260910161">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="571" y="334" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1586260910161" />
+    <state x="455" y="208" key="git4idea.merge.GitPullDialog" timestamp="1586260800582">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="455" y="208" key="git4idea.merge.GitPullDialog/0.0.1536.834@0.0.1536.834" timestamp="1586260800582" />
+    <state x="421" y="264" key="git4idea.ui.GitUnstashDialog" timestamp="1586260765323">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="421" y="264" key="git4idea.ui.GitUnstashDialog/0.0.1536.834@0.0.1536.834" timestamp="1586260765323" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -203,52 +204,5 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Screenshot/Screenshot_Clipping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="707">
-          <caret line="54" column="13" selection-start-line="41" selection-end-line="54" selection-end-column="13" />
-          <folding>
-            <element signature="e#92#134#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="396">
-            <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-            <folding>
-              <element signature="e#0#42#0" expanded="true" />
-              <element signature="e#0#42#0" expanded="true" />
-              <element signature="e#0#42#0" expanded="true" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
