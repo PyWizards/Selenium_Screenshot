@@ -13,13 +13,13 @@ with open(os.path.join(HERE, "README.md")) as fid:
 # This call to setup() does all the work
 setup(
     name="Selenium-Screenshot",
-    version="1.6.0",
+    version="1.7.0",
     description="This package is used to Clipped Images of Html Elements of Selenium Webdriver",
     long_description=README,
     long_description_content_type="text/markdown",
-    url="https://github.com/sam4u3/Selenium_Screenshot",
-    author="Sayar Mendis",
-    author_email="sayarmendis26@gmail.com",
+    url="https://github.com/PyWizards/Selenium_Screenshot",
+    author="PyWizard org",
+    author_email="py.wizard.org@gmail.com",
     license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
