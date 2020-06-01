@@ -10,11 +10,6 @@
 
 The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
 
-**Supported WebDriver :**
-
-- Chromedriver
-- IEDriverServer
-
 **Installations :**
 
 `pip install Selenium-Screenshot`
