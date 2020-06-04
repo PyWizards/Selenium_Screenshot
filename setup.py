@@ -21,6 +21,8 @@ setup(
     author="PyWizard org",
     author_email="py.wizard.org@gmail.com",
     license="MIT",
+    platforms="any",
+    python_requires=">=3.6.1",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
