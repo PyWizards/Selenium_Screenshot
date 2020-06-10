@@ -14,9 +14,9 @@ The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
 
 `pip install Selenium-Screenshot`
 
-This Package Supported for Python 3.*
+This Package Support Python 3.6+ only
 
-**How to Use :** 
+**How to Use :**
 
 **For Full Page ScreenShot :**
 ```python
