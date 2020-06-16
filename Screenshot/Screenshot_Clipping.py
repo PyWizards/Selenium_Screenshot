@@ -116,7 +116,7 @@ class Screenshot:
             stitched_image.save(save_path)
             return save_path
 
-    def get_element(self, driver: WebDriver, element: WebElement, save_location: str) -> str:
+    def get_element(self, driver: WebDriver, element: WebElement, save_location: str, to_hide: list = None) -> str:
         """
          Usage:
              Capture Element screenshot as a image
@@ -129,7 +129,7 @@ class Screenshot:
          Raises:
              N/A
          """
-        image = self.full_Screenshot(driver, save_path=save_location, image_name='clipping_shot.png')
+        image = self.full_Screenshot(driver, save_path=save_location, image_name='clipping_shot.png', elements=to_hide)
         location = element.location
         size = element.size
         x = location['x']
