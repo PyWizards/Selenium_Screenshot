@@ -1,6 +1,8 @@
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
-**Slenium Screenshot :**
+**Selenium Screenshot :**
 
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://pepy.tech/badge/selenium-screenshot)](https://pepy.tech/project/selenium-screenshot)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
@@ -10,7 +12,7 @@
 
 The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
 
-**Installations :**
+**Installation :**
 
 `pip install Selenium-Screenshot`
 
@@ -77,17 +79,17 @@ driver.quit()
 
 
 ````
-**Limitation :**
+**Limitation:**
 
 - Screenshot can take only 10000 of height of website
 
 
 **Contact Information :**
 
-[Email: sayarmendis26@gmail.com](mailto::sayarmendis26@gmail.com)
+[Email:py.wizard.org@gmail.com](mailto::py.wizard.org@gmail.com)
 
 **Donation :**
 
-If you have found my softwares to be of any use to you, do consider helping me pay my internet bills. This would encourage me to create many such softwares :)
+If you have found my softwares to be of any use to you, do consider helping me pay my internet bills. This would encourage me to create many such softwares.
 
 <a href="https://www.instamojo.com/@sayarmendis26/" target="_blank"><img src="https://www.soldermall.com/images/pic-online-payment.jpg" alt="Donate via Instamojo" title="Donate via instamojo" /></a>
