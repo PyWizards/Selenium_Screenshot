@@ -78,7 +78,7 @@ class Screenshot:
             time.sleep(2)
             rectangles = []
 
-            self.hide_elements(driver, elements)
+            
             i = 0
             while i < total_height:
                 ii = 0
@@ -100,6 +100,8 @@ class Screenshot:
                 if not previous is None:
                     driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
                     time.sleep(3)
+                    self.hide_elements(driver, elements)
+                    
                 file_name = "part_{0}.png".format(part)
                 driver.get_screenshot_as_file(file_name)
                 screenshot = Image.open(file_name)
