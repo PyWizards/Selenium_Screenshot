@@ -4,7 +4,7 @@
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://pepy.tech/badge/selenium-screenshot)](https://pepy.tech/project/selenium-screenshot)
+[![Downloads](https://static.pepy.tech/personalized-badge/selenium-screenshot?period=total&units=none&left_color=yellowgreen&right_color=blue&left_text=Downloads)](https://pepy.tech/project/selenium-screenshot)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 [![PyPI version](https://badge.fury.io/py/Selenium-Screenshot.svg)](https://badge.fury.io/py/Selenium-Screenshot)
 ![Python package](https://github.com/sam4u3/Selenium_Screenshot/workflows/Python%20package/badge.svg)
