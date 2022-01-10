@@ -92,4 +92,4 @@ driver.quit()
 
 If you have found my softwares to be of any use to you, do consider helping me pay my internet bills. This would encourage me to create many such softwares.
 
-<a href="https://www.instamojo.com/@sayarmendis26/" target="_blank"><img src="https://www.soldermall.com/images/pic-online-payment.jpg" alt="Donate via Instamojo" title="Donate via instamojo" /></a>
+<a href="https://www.paypal.me/sam4u3" target="_blank"><img src="https://raw.githubusercontent.com/aha999/DonateButtons/master/Paypal.png" alt="Donate via PayPal" title="Donate via PayPal" /></a>
