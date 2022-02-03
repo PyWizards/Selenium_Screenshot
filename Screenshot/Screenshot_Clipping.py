@@ -118,7 +118,7 @@ class Screenshot:
             stitched_image.save(save_path)
             return save_path
 
-    def get_element(self, driver: WebDriver, element: WebElement, save_location: str, to_hide: list = None) -> str:
+    def get_element(self, driver: WebDriver, element: WebElement, save_location: str, image_name : str = 'cropped_screenshot.png', to_hide: list = None) -> str:
         """
          Usage:
              Capture Element screenshot as a image
@@ -144,7 +144,7 @@ class Screenshot:
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
         uid = str(uuid.uuid4())
-        img_url = os.path.abspath(os.path.join(save_location, f"{uid}.png"))
+        img_url = os.path.abspath(os.path.join(save_location, f"{image_name}.png"))
         image_object.save(img_url)
         return img_url
 
