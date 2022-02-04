@@ -143,7 +143,6 @@ class Screenshot:
 
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
-        uid = str(uuid.uuid4())
         img_url = os.path.abspath(os.path.join(save_location, f"{image_name}.png"))
         image_object.save(img_url)
         return img_url
