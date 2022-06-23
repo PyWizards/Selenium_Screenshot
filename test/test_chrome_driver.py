@@ -1,10 +1,11 @@
 import os
 import sys
 
+
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.dirname(DATA_DIR)))
 
-from selenium import webdriver
+from selenium.webdriver.common.by import By
 from Screenshot import Screenshot_Clipping
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -26,7 +27,8 @@ def test_element_screenshot():
     driver = webdriver.Chrome(ChromeDriverManager(log_level=0).install())
     url = "https://github.com/PyWizards/Selenium_Screenshot"
     driver.get(url)
-    element = driver.find_element_by_class_name('pagehead-actions')
+    # element = driver.find_element_by_class_name('pagehead-actions')
+    element = driver.find_element(By.CLASS_NAME, 'pagehead-actions')
     img_url = ob.get_element(driver, element, r'.')
     os.remove(img_url)
     driver.close()
