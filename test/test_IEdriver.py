@@ -7,7 +7,7 @@ DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.dirname(DATA_DIR)))
 
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from Screenshot.Screenshot_Clipping import Screenshot
+from Screenshot.Screenshot import Screenshot
 from selenium.webdriver.edge.service import Service
 from selenium import webdriver
 

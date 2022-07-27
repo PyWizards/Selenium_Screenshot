@@ -1,1 +1,1 @@
-__all__ = ["Screenshot_Clipping"]
+__all__ = ["Screenshot"]

@@ -6,14 +6,14 @@ DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.dirname(DATA_DIR)))
 
 from selenium.webdriver.common.by import By
-from Screenshot import Screenshot_Clipping
+from Screenshot import Screenshot
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 
 
 def test_full_screenshot():
-    ob = Screenshot_Clipping.Screenshot()
+    ob = Screenshot.Screenshot()
     # driver = webdriver.Chrome(ChromeDriverManager(log_level=0).install())
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
@@ -26,7 +26,7 @@ def test_full_screenshot():
 
 
 def test_element_screenshot():
-    ob = Screenshot_Clipping.Screenshot()
+    ob = Screenshot.Screenshot()
     # driver = webdriver.Chrome(ChromeDriverManager(log_level=0).install())
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     url = "https://github.com/PyWizards/Selenium_Screenshot"
@@ -40,7 +40,7 @@ def test_element_screenshot():
 
 
 def test_hide_element():
-    ob = Screenshot_Clipping.Screenshot()
+    ob = Screenshot.Screenshot()
     # driver = webdriver.Chrome(ChromeDriverManager(log_level=0).install())
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     url = "https://github.com/sam4u3"
