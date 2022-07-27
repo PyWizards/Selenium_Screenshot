@@ -26,7 +26,7 @@ This Package Support Python 3.6+ only
 from Screenshot import Screenshot
 from selenium import webdriver
 
-ob = Screenshot_Clipping.Screenshot()
+ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
 driver.get(url)
@@ -43,7 +43,7 @@ driver.quit()
 from Screenshot import Screenshot
 from selenium import webdriver
 
-ob = Screenshot_Clipping.Screenshot()
+ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3/Selenium_Screenshot/blob/master/Screenshot/Screenshot_Clipping.py"
 driver.get(url)
@@ -64,7 +64,7 @@ driver.quit()
 from Screenshot import Screenshot
 from selenium import webdriver
 
-ob = Screenshot_Clipping.Screenshot()
+ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3"
 driver.get(url)
