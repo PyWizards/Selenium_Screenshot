@@ -104,14 +104,12 @@ class Screenshot:
             previous = None
             part = 0
 
-            # This value indicates if is the first part of the screenshot, or it is the rest of the screenshot
-            init_canvas = True
             # Get the screenshot and save the dimensions of the image, this will be useful for create a
             # correct canvas with correct dimensions
             # and not show images with a wrong size or cut
             size_screenshot = self.__get_screen_size(driver)
             # Get temporary sum of height of the total pages
-            height_canvas = size_screenshot['height'] * len(rectangles)
+            height_canvas = total_height*2
 
             # Compare if the screenshot it's only one part and assign the correct dimensions of the screenshot size
             # Or assign the height of the total screenshot
@@ -122,31 +120,19 @@ class Screenshot:
                 # Assign the dimensions corresponding to the size of the uniq screenshot
                 stitched_image = Image.new('RGB', (size_screenshot['width'], size_screenshot['height']))
 
-            # This constant is used top offset the image in the canvas
-            jump = round(size_screenshot['height'] / 2)
-            # With take multiple screenshots this value is used to adjust the position of the image in the canvas
-            # This value know update every time the screenshot is taken
-            top_offset = jump
-
             for rectangle in rectangles:
                 if previous is not None:
                     driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
                     time.sleep(1)
                     self.hide_elements(driver, elements)
 
+                scroll_y = int(driver.execute_script("return window.scrollY"))
+
                 file_name = "part_{0}.png".format(part)
                 driver.get_screenshot_as_file(file_name)
                 screenshot = Image.open(file_name)
 
-                if rectangle[1] + viewport_height > total_height:
-                    offset = (rectangle[0], rectangle[1] + top_offset)
-                else:
-                    if init_canvas:
-                        offset = (rectangle[0], rectangle[1])
-                        init_canvas = False
-                    else:
-                        offset = (rectangle[0], rectangle[1] + top_offset)
-                        top_offset = jump + top_offset
+                offset = (rectangle[0], scroll_y*2)
 
                 stitched_image.paste(screenshot, offset)
                 del screenshot
