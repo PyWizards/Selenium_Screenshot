@@ -100,59 +100,30 @@ class Screenshot:
                     rectangles.append((ii, i, top_width, top_height))
                     ii = ii + viewport_width
                 i = i + viewport_height
-            stitched_image = None
-            previous = None
+
             part = 0
+            stitched_image = Image.new('RGB', (total_width, total_height))
 
-            # This value indicates if is the first part of the screenshot, or it is the rest of the screenshot
-            init_canvas = True
-            # Get the screenshot and save the dimensions of the image, this will be useful for create a
-            # correct canvas with correct dimensions
-            # and not show images with a wrong size or cut
-            size_screenshot = self.__get_screen_size(driver)
-            # Get temporary sum of height of the total pages
-            height_canvas = size_screenshot['height'] * len(rectangles)
-
-            # Compare if the screenshot it's only one part and assign the correct dimensions of the screenshot size
-            # Or assign the height of the total screenshot
-            if multi_images:
-                # Assign the height of the total screenshot at canvas even if not used at the moment
-                stitched_image = Image.new('RGB', (size_screenshot['width'], height_canvas))
-            else:
-                # Assign the dimensions corresponding to the size of the uniq screenshot
-                stitched_image = Image.new('RGB', (size_screenshot['width'], size_screenshot['height']))
-
-            # This constant is used top offset the image in the canvas
-            jump = round(size_screenshot['height'] / 2)
-            # With take multiple screenshots this value is used to adjust the position of the image in the canvas
-            # This value know update every time the screenshot is taken
-            top_offset = jump
+            height_remaining = total_height
 
             for rectangle in rectangles:
-                if previous is not None:
-                    driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
-                    time.sleep(1)
-                    self.hide_elements(driver, elements)
+                driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
+                time.sleep(1)
+                self.hide_elements(driver, elements)
 
                 file_name = "part_{0}.png".format(part)
                 driver.get_screenshot_as_file(file_name)
                 screenshot = Image.open(file_name)
+                if screenshot.height > height_remaining:
+                    screenshot = screenshot.crop((0, screenshot.height - height_remaining, screenshot.width, screenshot.height))
 
-                if rectangle[1] + viewport_height > total_height:
-                    offset = (rectangle[0], rectangle[1] + top_offset)
-                else:
-                    if init_canvas:
-                        offset = (rectangle[0], rectangle[1])
-                        init_canvas = False
-                    else:
-                        offset = (rectangle[0], rectangle[1] + top_offset)
-                        top_offset = jump + top_offset
+                offset = (rectangle[0], rectangle[1])
 
                 stitched_image.paste(screenshot, offset)
+                height_remaining = height_remaining - screenshot.height
                 del screenshot
                 os.remove(file_name)
                 part = part + 1
-                previous = rectangle
             save_path = os.path.abspath(os.path.join(save_path, image_name))
             stitched_image.save(save_path)
             return save_path
