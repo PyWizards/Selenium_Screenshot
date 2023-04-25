@@ -72,8 +72,9 @@ class Screenshot:
                 else:
                     break
 
+        self.hide_elements(driver, elements)
+
         if isinstance(driver, webdriver.Ie):
-            self.hide_elements(driver, elements)
             required_width = driver.execute_script('return document.body.parentNode.scrollWidth')
             driver.set_window_size(required_width, final_page_height)
             driver.save_screenshot(image_name)
