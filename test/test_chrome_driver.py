@@ -46,7 +46,7 @@ def test_hide_element():
     url = "https://github.com/sam4u3"
     driver.get(url)
     hide_elements = ['class=avatar width-full height-full avatar-before-user-status']  # Use full class name
-    img_url = ob.full_screenshot(driver, save_path=r'.', elements=hide_elements,
+    img_url = ob.full_screenshot(driver, save_path=r'.', hide_elements=hide_elements,
                                  image_name='Myimage.png')
     os.remove(img_url)
     driver.close()
