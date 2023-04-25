@@ -166,10 +166,11 @@ class Screenshot:
              Capture Element screenshot as an image
          Args:
              driver: Web driver instance
-             element : The element on web page to be captured
-             save_location  : Path where to save image
+             element: The element on web page to be captured
+             save_location : Path where to save image
+             image_name: The final image name
          Returns:
-             img_url(str) : The path of image
+             img_url(str): The path of image
          Raises:
              N/A
          """
@@ -187,7 +188,7 @@ class Screenshot:
 
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
-        img_url = os.path.abspath(os.path.join(save_location, f"{image_name}.png"))
+        img_url = os.path.abspath(os.path.join(save_location, image_name))
         image_object.save(img_url)
         return img_url
 
