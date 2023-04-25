@@ -163,7 +163,7 @@ class Screenshot:
     def get_element(self, driver: WebDriver, element: WebElement, save_location: str, image_name: str = 'cropped_screenshot.png', to_hide: list = None) -> str:
         """
          Usage:
-             Capture Element screenshot as a image
+             Capture Element screenshot as an image
          Args:
              driver: Web driver instance
              element : The element on web page to be captured
@@ -173,8 +173,10 @@ class Screenshot:
          Raises:
              N/A
          """
-        image = self.full_Screenshot(driver, save_path=save_location, image_name='clipping_shot.png', elements=to_hide, multi_images=True)
+        # Get location first, to prevent StaleElementReferenceException
         location = element.location
+        image = self.full_Screenshot(driver, save_path=save_location, image_name='clipping_shot.png', elements=to_hide,
+                                     multi_images=True)
         size = element.size
         x = location['x']
         y = location['y']
