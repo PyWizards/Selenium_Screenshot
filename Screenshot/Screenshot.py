@@ -30,18 +30,6 @@ class Screenshot:
         """
         pass
 
-    @staticmethod
-    # Take temporary screenshot of the web page to get the size of the image
-    def __get_screen_size(driver: WebDriver) -> dict:
-        temp_file = 'screenshot.png'
-        driver.get_screenshot_as_file(temp_file)
-        image = Image.open(temp_file)
-        width, height = image.size
-        image.close()
-        os.remove(temp_file)
-
-        return {'width': width, 'height': height}
-
     def full_screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
                         elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5) -> str:
         """
