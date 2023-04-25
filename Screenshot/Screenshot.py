@@ -150,6 +150,10 @@ class Screenshot:
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
         img_url = os.path.abspath(os.path.join(save_path, image_name))
         image_object.save(img_url)
+
+        image_object.close()
+        os.remove(image)
+
         return img_url
 
     @staticmethod
