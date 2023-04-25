@@ -11,7 +11,7 @@ class Screenshot:
     """
        #================================================================================================================#
        #                                          Class: Screenshot                                                     #
-       #                                    Purpose: Captured full and element screenshot using selenium                #
+       #                                    Purpose: Capture full and element screenshot using Selenium                #
        #                                    a) Capture full webpage as image                                            #
        #                                    b) Capture element screenshots                                              #
        #================================================================================================================#
@@ -31,19 +31,19 @@ class Screenshot:
         pass
 
     def full_screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
-                        elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5) -> str:
+                        hide_elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5) -> str:
         """
         Take full screenshot of web page
         Args:
-            driver: The Selenium web driver object
-            save_path: The path where to store screenshot
-            image_name: The name of screenshot image
-            elements: List of Xpath of elements to hide from web pages
-            is_load_at_runtime: Page Load at runtime
-            load_wait_time: The Wait time while loading full screen
+            driver: Web driver instance
+            save_path: Path where to save image
+            image_name: The name of the image
+            hide_elements: List of Xpath elements to hide from web page
+            is_load_at_runtime: Page loads at runtime
+            load_wait_time: The wait time while loading full screen
 
         Returns:
-            str : The path of image
+            str: The image path
         """
         image_name = os.path.abspath(save_path + '/' + image_name)
 
@@ -60,7 +60,7 @@ class Screenshot:
                 else:
                     break
 
-        self.hide_elements(driver, elements)
+        self.hide_elements(driver, hide_elements)
 
         if isinstance(driver, webdriver.Ie):
             required_width = driver.execute_script('return document.body.parentNode.scrollWidth')
@@ -100,7 +100,7 @@ class Screenshot:
                     driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
                     time.sleep(1)
 
-                self.hide_elements(driver, elements)
+                self.hide_elements(driver, hide_elements)
 
                 file_name = "part_{0}.png".format(part)
                 driver.get_screenshot_as_file(file_name)
@@ -120,23 +120,24 @@ class Screenshot:
             stitched_image.save(save_path)
             return save_path
 
-    def get_element(self, driver: WebDriver, element: WebElement, save_location: str, image_name: str = 'cropped_screenshot.png', to_hide: list = None) -> str:
+    def get_element(self, driver: WebDriver, element: WebElement, save_path: str, image_name: str = 'cropped_screenshot.png', hide_elements: list = None) -> str:
         """
          Usage:
-             Capture Element screenshot as an image
+             Capture element screenshot as an image
          Args:
              driver: Web driver instance
-             element: The element on web page to be captured
-             save_location : Path where to save image
-             image_name: The final image name
+             element: The element on the web page to be captured
+             save_path: Path where to save image
+             image_name: The name of the image
+             hide_elements: List of Xpath elements to hide from web page
          Returns:
-             img_url(str): The path of image
+             img_url(str): The image path
          Raises:
              N/A
          """
         # Get location first, to prevent StaleElementReferenceException
         location = element.location
-        image = self.full_screenshot(driver, save_path=save_location, image_name='clipping_shot.png', elements=to_hide)
+        image = self.full_screenshot(driver, save_path=save_path, image_name='clipping_shot.png', hide_elements=hide_elements)
         size = element.size
         x = location['x']
         y = location['y']
@@ -147,7 +148,7 @@ class Screenshot:
 
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
-        img_url = os.path.abspath(os.path.join(save_location, image_name))
+        img_url = os.path.abspath(os.path.join(save_path, image_name))
         image_object.save(img_url)
         return img_url
 
@@ -157,8 +158,8 @@ class Screenshot:
          Usage:
              Hide elements from web page
          Args:
-             driver : The path of chromedriver
-             elements : The element on web page to be hide
+             driver: Web driver instance
+             elements: The elements on the web page to hide
          Returns:
              N/A
          Raises:
