@@ -42,7 +42,7 @@ class Screenshot:
 
         return {'width': width, 'height': height}
 
-    def full_Screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
+    def full_screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
                         elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5, multi_images: bool = False) -> str:
         """
         Take full screenshot of web page
@@ -176,7 +176,7 @@ class Screenshot:
          """
         # Get location first, to prevent StaleElementReferenceException
         location = element.location
-        image = self.full_Screenshot(driver, save_path=save_location, image_name='clipping_shot.png', elements=to_hide,
+        image = self.full_screenshot(driver, save_path=save_location, image_name='clipping_shot.png', elements=to_hide,
                                      multi_images=True)
         size = element.size
         x = location['x']

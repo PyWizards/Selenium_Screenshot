@@ -21,7 +21,7 @@ def test_IE():
     url = 'https://github.com/PyWizards/Selenium_Screenshot'
     driver.get(url)
     time.sleep(10)
-    image_path = sc.full_Screenshot(driver, save_path='.', image_name='testimage.png', load_wait_time=5,
+    image_path = sc.full_screenshot(driver, save_path='.', image_name='testimage.png', load_wait_time=5,
                                     is_load_at_runtime=True)
     os.remove(image_path)
     driver.close()
