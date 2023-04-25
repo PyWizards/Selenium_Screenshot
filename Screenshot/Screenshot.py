@@ -33,9 +33,12 @@ class Screenshot:
     @staticmethod
     # Take temporary screenshot of the web page to get the size of the image
     def __get_screen_size(driver: WebDriver) -> dict:
-        driver.get_screenshot_as_file('screenshot.png')
-        image = Image.open('screenshot.png')
+        temp_file = 'screenshot.png'
+        driver.get_screenshot_as_file(temp_file)
+        image = Image.open(temp_file)
         width, height = image.size
+        image.close()
+        os.remove(temp_file)
 
         return {'width': width, 'height': height}
 
