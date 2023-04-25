@@ -137,8 +137,8 @@ class Screenshot:
          """
         # Get location first, to prevent StaleElementReferenceException
         location = element.location
-        image = self.full_screenshot(driver, save_path=save_path, image_name='clipping_shot.png', hide_elements=hide_elements)
         size = element.size
+        image = self.full_screenshot(driver, save_path=save_path, image_name='clipping_shot.png', hide_elements=hide_elements)
         x = location['x']
         y = location['y']
         w = size['width']
