@@ -110,7 +110,8 @@ class Screenshot:
                 if previous is not None:
                     driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
                     time.sleep(1)
-                    self.hide_elements(driver, elements)
+
+                self.hide_elements(driver, elements)
 
                 file_name = "part_{0}.png".format(part)
                 driver.get_screenshot_as_file(file_name)
