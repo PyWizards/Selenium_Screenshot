@@ -11,7 +11,7 @@ class Screenshot:
     """
        #================================================================================================================#
        #                                          Class: Screenshot                                                     #
-       #                                    Purpose: Captured full and element screenshot using selenium                #
+       #                                    Purpose: Capture full and element screenshot using Selenium                #
        #                                    a) Capture full webpage as image                                            #
        #                                    b) Capture element screenshots                                              #
        #================================================================================================================#
@@ -30,30 +30,20 @@ class Screenshot:
         """
         pass
 
-    @staticmethod
-    # Take temporary screenshot of the web page to get the size of the image
-    def __get_screen_size(driver: WebDriver) -> dict:
-        driver.get_screenshot_as_file('screenshot.png')
-        image = Image.open('screenshot.png')
-        width, height = image.size
-
-        return {'width': width, 'height': height}
-
-    def full_Screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
-                        elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5, multi_images: bool = False) -> str:
+    def full_screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
+                        hide_elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5) -> str:
         """
         Take full screenshot of web page
         Args:
-            driver: The Selenium web driver object
-            save_path: The path where to store screenshot
-            image_name: The name of screenshot image
-            elements: List of Xpath of elements to hide from web pages
-            is_load_at_runtime: Page Load at runtime
-            load_wait_time: The Wait time while loading full screen
-            multi_images: The flag is uses to capture multiple images and create single image in vertical format
+            driver: Web driver instance
+            save_path: Path where to save image
+            image_name: The name of the image
+            hide_elements: List of Xpath elements to hide from web page
+            is_load_at_runtime: Page loads at runtime
+            load_wait_time: The wait time while loading full screen
 
         Returns:
-            str : The path of image
+            str: The image path
         """
         image_name = os.path.abspath(save_path + '/' + image_name)
 
@@ -70,8 +60,9 @@ class Screenshot:
                 else:
                     break
 
+        self.hide_elements(driver, hide_elements)
+
         if isinstance(driver, webdriver.Ie):
-            self.hide_elements(driver, elements)
             required_width = driver.execute_script('return document.body.parentNode.scrollWidth')
             driver.set_window_size(required_width, final_page_height)
             driver.save_screenshot(image_name)
@@ -100,53 +91,25 @@ class Screenshot:
                     rectangles.append((ii, i, top_width, top_height))
                     ii = ii + viewport_width
                 i = i + viewport_height
-            stitched_image = None
+            stitched_image = Image.new('RGB', (total_width, total_height))
             previous = None
             part = 0
-
-            # This value indicates if is the first part of the screenshot, or it is the rest of the screenshot
-            init_canvas = True
-            # Get the screenshot and save the dimensions of the image, this will be useful for create a
-            # correct canvas with correct dimensions
-            # and not show images with a wrong size or cut
-            size_screenshot = self.__get_screen_size(driver)
-            # Get temporary sum of height of the total pages
-            height_canvas = size_screenshot['height'] * len(rectangles)
-
-            # Compare if the screenshot it's only one part and assign the correct dimensions of the screenshot size
-            # Or assign the height of the total screenshot
-            if multi_images:
-                # Assign the height of the total screenshot at canvas even if not used at the moment
-                stitched_image = Image.new('RGB', (size_screenshot['width'], height_canvas))
-            else:
-                # Assign the dimensions corresponding to the size of the uniq screenshot
-                stitched_image = Image.new('RGB', (size_screenshot['width'], size_screenshot['height']))
-
-            # This constant is used top offset the image in the canvas
-            jump = round(size_screenshot['height'] / 2)
-            # With take multiple screenshots this value is used to adjust the position of the image in the canvas
-            # This value know update every time the screenshot is taken
-            top_offset = jump
 
             for rectangle in rectangles:
                 if previous is not None:
                     driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
                     time.sleep(1)
-                    self.hide_elements(driver, elements)
+
+                self.hide_elements(driver, hide_elements)
 
                 file_name = "part_{0}.png".format(part)
                 driver.get_screenshot_as_file(file_name)
                 screenshot = Image.open(file_name)
 
                 if rectangle[1] + viewport_height > total_height:
-                    offset = (rectangle[0], rectangle[1] + top_offset)
+                    offset = (rectangle[0], total_height - viewport_height)
                 else:
-                    if init_canvas:
-                        offset = (rectangle[0], rectangle[1])
-                        init_canvas = False
-                    else:
-                        offset = (rectangle[0], rectangle[1] + top_offset)
-                        top_offset = jump + top_offset
+                    offset = (rectangle[0], rectangle[1])
 
                 stitched_image.paste(screenshot, offset)
                 del screenshot
@@ -157,20 +120,24 @@ class Screenshot:
             stitched_image.save(save_path)
             return save_path
 
-    def get_element(self, driver: WebDriver, element: WebElement, save_location: str, image_name: str = 'cropped_screenshot.png', to_hide: list = None) -> str:
+    def get_element(self, driver: WebDriver, element: WebElement, save_path: str, image_name: str = 'cropped_screenshot.png', hide_elements: list = None) -> str:
         """
          Usage:
-             Capture Element screenshot as a image
+             Capture element screenshot as an image
          Args:
              driver: Web driver instance
-             element : The element on web page to be captured
-             save_location  : Path where to save image
+             element: The element on the web page to be captured
+             save_path: Path where to save image
+             image_name: The name of the image
+             hide_elements: List of Xpath elements to hide from web page
          Returns:
-             img_url(str) : The path of image
+             img_url(str): The image path
          Raises:
              N/A
          """
-        image = self.full_Screenshot(driver, save_path=save_location, image_name='clipping_shot.png', elements=to_hide, multi_images=True)
+        image = self.full_screenshot(driver, save_path=save_path, image_name='clipping_shot.png', hide_elements=hide_elements)
+        # Need to scroll to top, to get absolute coordinates
+        driver.execute_script("window.scrollTo(0, 0)")
         location = element.location
         size = element.size
         x = location['x']
@@ -182,8 +149,12 @@ class Screenshot:
 
         image_object = Image.open(image)
         image_object = image_object.crop((int(x), int(y), int(width), int(height)))
-        img_url = os.path.abspath(os.path.join(save_location, f"{image_name}.png"))
+        img_url = os.path.abspath(os.path.join(save_path, image_name))
         image_object.save(img_url)
+
+        image_object.close()
+        os.remove(image)
+
         return img_url
 
     @staticmethod
@@ -192,8 +163,8 @@ class Screenshot:
          Usage:
              Hide elements from web page
          Args:
-             driver : The path of chromedriver
-             elements : The element on web page to be hide
+             driver: Web driver instance
+             elements: The elements on the web page to hide
          Returns:
              N/A
          Raises:
@@ -205,11 +176,11 @@ class Screenshot:
                     sp_xpath = e.split('=')
                     if 'id=' in e.lower():
                         driver.execute_script(
-                            "document.getElementById('{}').setAttribute('style', 'display:none;');".format(
+                            "document.getElementById('{}').setAttribute('style', 'display:none !important;');".format(
                                 sp_xpath[1]))
                     elif 'class=' in e.lower():
                         driver.execute_script(
-                            "document.getElementsByClassName('{}')[0].setAttribute('style', 'display:none;');".format(
+                            "document.getElementsByClassName('{}')[0].setAttribute('style', 'display:none !important;');".format(
                                 sp_xpath[1]))
                     else:
                         print('For Hiding Element works with ID and Class Selector only')

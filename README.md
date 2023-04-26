@@ -1,6 +1,6 @@
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
-**Selenium Screenshot :**
+**Selenium Screenshot:**
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -10,17 +10,17 @@
 ![Python package](https://github.com/sam4u3/Selenium_Screenshot/workflows/Python%20package/badge.svg)
 
 
-The Selenium Screenshot is used to clipped Html Element using Selenium Webdriver
+The Selenium Screenshot is used to clip Html pages and elements using Selenium.
 
-**Installation :**
+**Installation:**
 
 `pip install Selenium-Screenshot`
 
-This Package Support Python 3.6+ only
+This package supports Python 3.6+ only.
 
-**How to Use :**
+**How to Use:**
 
-**For Full Page ScreenShot :**
+**For Full Page Screenshot:**
 
 ```python
 from Screenshot import Screenshot
@@ -30,14 +30,14 @@ ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
 driver.get(url)
-img_url = ob.full_Screenshot(driver, save_path=r'.', image_name='Myimage.png')
+img_url = ob.full_screenshot(driver, save_path=r'.', image_name='Myimage.png')
 print(img_url)
 driver.close()
 
 driver.quit()
 ```
 
-**For Html Element Clipping :**
+**For Html Element Clipping:**
 
 ````python
 from Screenshot import Screenshot
@@ -58,7 +58,7 @@ driver.quit()
 
 ````
 
-**For Html Element Clipping with Hiding Element :**
+**For Html Element Clipping with Hiding Element:**
 
 ````python
 from Screenshot import Screenshot
@@ -68,8 +68,8 @@ ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3"
 driver.get(url)
-Hide_elements = ['class=avatar width-full height-full avatar-before-user-status']  # Use full class name
-img_url = ob.full_Screenshot(driver, save_path=r'.', elements=Hide_elements, image_name='Myimage.png')
+hide_elements = ['class=avatar width-full height-full avatar-before-user-status']  # Use full class name
+img_url = ob.full_screenshot(driver, save_path=r'.', hide_elements=hide_elements, image_name='Myimage.png')
 print(img_url)
 driver.close()
 
@@ -82,12 +82,12 @@ driver.quit()
 - Screenshot can take only 10000 of height of website
 
 
-**Contact Information :**
+**Contact Information:**
 
 [Email:py.wizard.org@gmail.com](mailto::py.wizard.org@gmail.com)
 
-**Donation :**
+**Donation:**
 
-If you have found my softwares to be of any use to you, do consider helping me pay my internet bills. This would encourage me to create many such softwares.
+If you have found my software to be of any use to you, do consider helping me pay my internet bills. This would encourage me to maintain and create more projects.
 
 <a href="https://www.paypal.me/sam4u3" target="_blank"><img src="https://raw.githubusercontent.com/aha999/DonateButtons/master/Paypal.png" alt="Donate via PayPal" title="Donate via PayPal" /></a>

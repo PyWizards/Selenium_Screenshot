@@ -18,7 +18,7 @@ def test_full_screenshot():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
     driver.get(url)
-    img_url = ob.full_Screenshot(driver, save_path=r'.', image_name='Myimage.png', is_load_at_runtime=True,
+    img_url = ob.full_screenshot(driver, save_path=r'.', image_name='Myimage.png', is_load_at_runtime=True,
                                  load_wait_time=3)
     os.remove(img_url)
     driver.close()
@@ -46,7 +46,7 @@ def test_hide_element():
     url = "https://github.com/sam4u3"
     driver.get(url)
     hide_elements = ['class=avatar width-full height-full avatar-before-user-status']  # Use full class name
-    img_url = ob.full_Screenshot(driver, save_path=r'.', elements=hide_elements,
+    img_url = ob.full_screenshot(driver, save_path=r'.', hide_elements=hide_elements,
                                  image_name='Myimage.png')
     os.remove(img_url)
     driver.close()
