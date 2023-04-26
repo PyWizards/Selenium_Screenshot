@@ -135,10 +135,11 @@ class Screenshot:
          Raises:
              N/A
          """
-        # Get location first, to prevent StaleElementReferenceException
+        image = self.full_screenshot(driver, save_path=save_path, image_name='clipping_shot.png', hide_elements=hide_elements)
+        # Need to scroll to top, to get absolute coordinates
+        driver.execute_script("window.scrollTo(0, 0)")
         location = element.location
         size = element.size
-        image = self.full_screenshot(driver, save_path=save_path, image_name='clipping_shot.png', hide_elements=hide_elements)
         x = location['x']
         y = location['y']
         w = size['width']
