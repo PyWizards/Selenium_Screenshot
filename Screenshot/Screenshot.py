@@ -176,11 +176,11 @@ class Screenshot:
                     sp_xpath = e.split('=')
                     if 'id=' in e.lower():
                         driver.execute_script(
-                            "document.getElementById('{}').setAttribute('style', 'display:none;');".format(
+                            "document.getElementById('{}').setAttribute('style', 'display:none !important;');".format(
                                 sp_xpath[1]))
                     elif 'class=' in e.lower():
                         driver.execute_script(
-                            "document.getElementsByClassName('{}')[0].setAttribute('style', 'display:none;');".format(
+                            "document.getElementsByClassName('{}')[0].setAttribute('style', 'display:none !important;');".format(
                                 sp_xpath[1]))
                     else:
                         print('For Hiding Element works with ID and Class Selector only')
