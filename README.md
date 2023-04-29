@@ -30,7 +30,8 @@ ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
 driver.get(url)
-img_url = ob.full_screenshot(driver, save_path=r'.', image_name='Myimage.png')
+img_url = ob.full_screenshot(driver, save_path=r'.', image_name='myimage.png', is_load_at_runtime=True,
+                                          load_wait_time=3)
 print(img_url)
 driver.close()
 
@@ -42,18 +43,17 @@ driver.quit()
 ````python
 from Screenshot import Screenshot
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3/Selenium_Screenshot/blob/master/Screenshot/Screenshot_Clipping.py"
 driver.get(url)
 
-element = driver.find_element_by_class_name('signup-prompt')
-img_url = ob.get_element(driver, element, r'.')
+element = driver.find_element(By.XPATH, "//img[@title='Donate via PayPal']")
+img_url = ob.get_element(driver, element, save_path=r'.', image_name='paypal.png')
 print(img_url)
-
 driver.close()
-
 driver.quit()
 
 ````
@@ -68,8 +68,9 @@ ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
 url = "https://github.com/sam4u3"
 driver.get(url)
-hide_elements = ['class=avatar width-full height-full avatar-before-user-status']  # Use full class name
-img_url = ob.full_screenshot(driver, save_path=r'.', hide_elements=hide_elements, image_name='Myimage.png')
+hide_elements = ['class=position-relative js-header-wrapper ']
+img_url = ob.full_screenshot(driver, save_path=r'.', image_name='myimage.png',
+                                          hide_elements=hide_elements)
 print(img_url)
 driver.close()
 

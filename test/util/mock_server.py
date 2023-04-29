@@ -11,7 +11,7 @@ def run_server(directory=".", port=0):
     httpd = HTTPServer((hostname, port), handler, False)
 
     httpd.server_bind()
-    address = "http://%s:%d" % (httpd.server_name, httpd.server_port)
+    address = "http://%s:%d" % (hostname, httpd.server_port)
     httpd.server_activate()
 
     def serve_forever(httpd):
