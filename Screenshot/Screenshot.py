@@ -102,7 +102,7 @@ class Screenshot:
 
                 self.hide_elements(driver, hide_elements)
 
-                file_name = "part_{0}.png".format(part)
+                file_name = save_path + "/part_{0}.png".format(part)
                 driver.get_screenshot_as_file(file_name)
                 screenshot = Image.open(file_name)
 
