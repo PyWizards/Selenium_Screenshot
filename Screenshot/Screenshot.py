@@ -174,14 +174,24 @@ class Screenshot:
             try:
                 for e in elements:
                     sp_xpath = e.split('=')
-                    if 'id=' in e.lower():
-                        driver.execute_script(
-                            "document.getElementById('{}').setAttribute('style', 'display:none !important;');".format(
-                                sp_xpath[1]))
-                    elif 'class=' in e.lower():
-                        driver.execute_script(
-                            "document.getElementsByClassName('{}')[0].setAttribute('style', 'display:none !important;');".format(
-                                sp_xpath[1]))
+                    selector_type = sp_xpath[0].lower()
+                    selector_value = sp_xpath[1]
+                    if selector_type == 'id':
+                        script = f"""
+                        var el = document.getElementById('{selector_value}');
+                        if (el) {{
+                            el.setAttribute('style', 'display:none !important;');
+                        }}
+                        """
+                        driver.execute_script(script)
+                    elif selector_type == 'class':
+                        script = f"""
+                        var el = document.getElementsByClassName('{selector_value}')[0];
+                        if (el) {{
+                            el.setAttribute('style', 'display:none !important;');
+                        }}
+                        """
+                        driver.execute_script(script)
                     else:
                         print('For Hiding Element works with ID and Class Selector only')
             except Exception as Error:
