@@ -1,1 +1,1 @@
-__all__ = ["Screenshot"]
+from  .Screenshot import Screenshot

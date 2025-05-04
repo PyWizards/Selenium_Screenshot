@@ -23,17 +23,21 @@ This package supports Python 3.6+ only.
 **For Full Page Screenshot:**
 
 ```python
-from Screenshot import Screenshot
 from selenium import webdriver
+from Screenshot import Screenshot
 
-ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
-url = "https://github.com/sam4u3/Selenium_Screenshot/tree/master/test"
-driver.get(url)
-img_url = ob.full_screenshot(driver, save_path=r'.', image_name='myimage.png', is_load_at_runtime=True,
-                                          load_wait_time=3)
-print(img_url)
-driver.close()
+driver.get("https://en.wikipedia.org/wiki/Python")
+
+ss = Screenshot(driver)
+
+# Example: hide sticky header + specific table
+table_to_hide = driver.find_element("css selector", "#p-search")
+
+ss.capture_full_page(
+    output_path="python_wiki.png",
+    hide_selectors=[".vector-sticky-header", "#mw-head", table_to_hide]  # mix of CSS + WebElement
+)
 
 driver.quit()
 ```
@@ -41,47 +45,21 @@ driver.quit()
 **For Html Element Clipping:**
 
 ````python
-from Screenshot import Screenshot
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from Screenshot import Screenshot
 
-ob = Screenshot.Screenshot()
 driver = webdriver.Chrome()
-url = "https://github.com/sam4u3/Selenium_Screenshot/blob/master/Screenshot/Screenshot_Clipping.py"
-driver.get(url)
+driver.get("https://en.wikipedia.org/wiki/Python")
 
-element = driver.find_element(By.XPATH, "//img[@title='Donate via PayPal']")
-img_url = ob.get_element(driver, element, save_path=r'.', image_name='paypal.png')
-print(img_url)
-driver.close()
+ss = Screenshot(driver)
+
+# Capture a specific box (e.g., infobox)
+content_only = driver.find_element("css selector", "#mw-content-text")
+ss.capture_element(content_only, "content_only.png")
+
 driver.quit()
 
 ````
-
-**For Html Element Clipping with Hiding Element:**
-
-````python
-from Screenshot import Screenshot
-from selenium import webdriver
-
-ob = Screenshot.Screenshot()
-driver = webdriver.Chrome()
-url = "https://github.com/sam4u3"
-driver.get(url)
-hide_elements = ['class=position-relative js-header-wrapper ']
-img_url = ob.full_screenshot(driver, save_path=r'.', image_name='myimage.png',
-                                          hide_elements=hide_elements)
-print(img_url)
-driver.close()
-
-driver.quit()
-
-
-````
-**Limitation:**
-
-- Screenshot can take only 10000 of height of website
-
 
 **Contact Information:**
 

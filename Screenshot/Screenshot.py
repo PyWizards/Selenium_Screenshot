@@ -1,198 +1,118 @@
-import os
 import time
-
+import base64
+from io import BytesIO
 from PIL import Image
 from selenium import webdriver
-from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement
 
-
 class Screenshot:
-    """
-       #================================================================================================================#
-       #                                          Class: Screenshot                                                     #
-       #                                    Purpose: Capture full and element screenshot using Selenium                #
-       #                                    a) Capture full webpage as image                                            #
-       #                                    b) Capture element screenshots                                              #
-       #================================================================================================================#
-    """
+    def __init__(self, driver: webdriver.Chrome, scroll_pause: float = 0.3):
+        self.driver = driver
+        self.scroll_pause = scroll_pause
 
-    def __init__(self):
-        """
-        Usage:
-            N/A
-        Args:
-            N/A
-        Returns:
-            N/A
-        Raises:
-            N/A
-        """
-        pass
+    def hide_elements(self, elements_or_selectors):
+        """Hide elements via CSS selector or WebElement objects."""
+        if not elements_or_selectors:
+            return
 
-    def full_screenshot(self, driver: WebDriver, save_path: str = '', image_name: str = 'selenium_full_screenshot.png',
-                        hide_elements: list = None, is_load_at_runtime: bool = False, load_wait_time: int = 5) -> str:
-        """
-        Take full screenshot of web page
-        Args:
-            driver: Web driver instance
-            save_path: Path where to save image
-            image_name: The name of the image
-            hide_elements: List of Xpath elements to hide from web page
-            is_load_at_runtime: Page loads at runtime
-            load_wait_time: The wait time while loading full screen
+        for item in elements_or_selectors:
+            if isinstance(item, str):
+                # Hide by CSS selector
+                self.driver.execute_script(f"""
+                        document.querySelectorAll("{item}").forEach(el => {{
+                            el.style.display = "none";
+                        }});
+                    """)
+            elif isinstance(item, WebElement):
+                # Hide specific element directly
+                self.driver.execute_script("""
+                        arguments[0].style.display = "none";
+                    """, item)
 
-        Returns:
-            str: The image path
-        """
-        image_name = os.path.abspath(save_path + '/' + image_name)
+    def _scroll_to_bottom(self):
+        last_height = 0
+        while True:
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(self.scroll_pause)
+            new_height = self.driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                break
+            last_height = new_height
 
-        final_page_height = 0
-        original_size = driver.get_window_size()
+    def _get_page_dimensions(self):
+        width = self.driver.execute_script("return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);")
+        height = self.driver.execute_script("return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);")
+        return width, height
 
-        if is_load_at_runtime:
-            while True:
-                page_height = driver.execute_script("return document.body.scrollHeight")
-                if page_height != final_page_height and final_page_height <= 10000:
-                    driver.execute_script("window.scrollTo(0, {})".format(page_height))
-                    time.sleep(load_wait_time)
-                    final_page_height = page_height
-                else:
-                    break
+    def capture_full_page(self, output_path="screenshot.png", hide_selectors=None):
+        if hide_selectors is None:
+            hide_selectors = ["#mw-head", "#mw-panel", ".vector-sticky-header"]
+        self.hide_elements(hide_selectors)
+        self._scroll_to_bottom()
 
-        self.hide_elements(driver, hide_elements)
+        width, height = self._get_page_dimensions()
 
-        if isinstance(driver, webdriver.Ie):
-            required_width = driver.execute_script('return document.body.parentNode.scrollWidth')
-            driver.set_window_size(required_width, final_page_height)
-            driver.save_screenshot(image_name)
-            driver.set_window_size(original_size['width'], original_size['height'])
-            return image_name
+        # Force the viewport size using Chrome DevTools Protocol
+        self.driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride", {
+            "width": width,
+            "height": height,
+            "deviceScaleFactor": 1,
+            "mobile": False
+        })
+        time.sleep(0.5)
 
-        else:
-            total_width = driver.execute_script("return document.body.offsetWidth")
-            total_height = driver.execute_script("return document.body.parentNode.scrollHeight")
-            viewport_width = driver.execute_script("return document.body.clientWidth")
-            viewport_height = driver.execute_script("return window.innerHeight")
-            driver.execute_script("window.scrollTo(0, 0)")
-            time.sleep(2)
-            rectangles = []
+        # Take screenshot using CDP
+        screenshot_data = self.driver.execute_cdp_cmd("Page.captureScreenshot", {
+            "format": "png",
+            "fromSurface": True,
+            "captureBeyondViewport": True
+        })
 
-            i = 0
-            while i < total_height:
-                ii = 0
-                top_height = i + viewport_height
-                if top_height > total_height:
-                    top_height = total_height
-                while ii < total_width:
-                    top_width = ii + viewport_width
-                    if top_width > total_width:
-                        top_width = total_width
-                    rectangles.append((ii, i, top_width, top_height))
-                    ii = ii + viewport_width
-                i = i + viewport_height
-            stitched_image = Image.new('RGB', (total_width, total_height))
-            previous = None
-            part = 0
+        # Decode and save
+        image_data = base64.b64decode(screenshot_data['data'])
+        image = Image.open(BytesIO(image_data))
+        image.save(output_path)
 
-            for rectangle in rectangles:
-                if previous is not None:
-                    driver.execute_script("window.scrollTo({0}, {1})".format(rectangle[0], rectangle[1]))
-                    time.sleep(1)
+        print(f"[✓] Full-page screenshot saved to: {output_path}")
 
-                self.hide_elements(driver, hide_elements)
+    def capture_element(self, element: WebElement, output_path="element.png", padding=0):
+        """Capture full-width screenshot of a specific element using full-page technique."""
+        # Ensure lazy content is loaded
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+        time.sleep(self.scroll_pause)
 
-                file_name = save_path + "/part_{0}.png".format(part)
-                driver.get_screenshot_as_file(file_name)
-                screenshot = Image.open(file_name)
+        # Get page size and set viewport to full page (CDP method)
+        total_width = self.driver.execute_script(
+            "return Math.max(document.body.scrollWidth, document.documentElement.scrollWidth);")
+        total_height = self.driver.execute_script(
+            "return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);")
 
-                if rectangle[1] + viewport_height > total_height:
-                    offset = (rectangle[0], total_height - viewport_height)
-                else:
-                    offset = (rectangle[0], rectangle[1])
+        self.driver.execute_cdp_cmd("Emulation.setDeviceMetricsOverride", {
+            "width": total_width,
+            "height": total_height,
+            "deviceScaleFactor": 1,
+            "mobile": False
+        })
+        time.sleep(0.5)
 
-                stitched_image.paste(screenshot, offset)
-                del screenshot
-                os.remove(file_name)
-                part = part + 1
-                previous = rectangle
-            save_path = os.path.abspath(os.path.join(save_path, image_name))
-            stitched_image.save(save_path)
-            return save_path
+        # Take full screenshot using CDP
+        screenshot_data = self.driver.execute_cdp_cmd("Page.captureScreenshot", {
+            "format": "png",
+            "fromSurface": True,
+            "captureBeyondViewport": True
+        })
+        png_data = base64.b64decode(screenshot_data['data'])
+        image = Image.open(BytesIO(png_data))
 
-    def get_element(self, driver: WebDriver, element: WebElement, save_path: str, image_name: str = 'cropped_screenshot.png', hide_elements: list = None) -> str:
-        """
-         Usage:
-             Capture element screenshot as an image
-         Args:
-             driver: Web driver instance
-             element: The element on the web page to be captured
-             save_path: Path where to save image
-             image_name: The name of the image
-             hide_elements: List of Xpath elements to hide from web page
-         Returns:
-             img_url(str): The image path
-         Raises:
-             N/A
-         """
-        image = self.full_screenshot(driver, save_path=save_path, image_name='clipping_shot.png', hide_elements=hide_elements)
-        # Need to scroll to top, to get absolute coordinates
-        driver.execute_script("window.scrollTo(0, 0)")
-        location = element.location
+        # Get element position
+        location = element.location_once_scrolled_into_view
         size = element.size
-        x = location['x']
-        y = location['y']
-        w = size['width']
-        h = size['height']
-        width = x + w
-        height = y + h
 
-        image_object = Image.open(image)
-        image_object = image_object.crop((int(x), int(y), int(width), int(height)))
-        img_url = os.path.abspath(os.path.join(save_path, image_name))
-        image_object.save(img_url)
+        left = int(location['x']) - padding
+        top = int(location['y']) - padding
+        right = int(location['x'] + size['width']) + padding
+        bottom = int(location['y'] + size['height']) + padding
 
-        image_object.close()
-        os.remove(image)
-
-        return img_url
-
-    @staticmethod
-    def hide_elements(driver: WebDriver, elements: list) -> None:
-        """
-         Usage:
-             Hide elements from web page
-         Args:
-             driver: Web driver instance
-             elements: The elements on the web page to hide
-         Returns:
-             N/A
-         Raises:
-             N/A
-         """
-        if elements is not None:
-            try:
-                for e in elements:
-                    sp_xpath = e.split('=')
-                    selector_type = sp_xpath[0].lower()
-                    selector_value = sp_xpath[1]
-                    if selector_type == 'id':
-                        script = f"""
-                        var el = document.getElementById('{selector_value}');
-                        if (el) {{
-                            el.setAttribute('style', 'display:none !important;');
-                        }}
-                        """
-                        driver.execute_script(script)
-                    elif selector_type == 'class':
-                        script = f"""
-                        var el = document.getElementsByClassName('{selector_value}')[0];
-                        if (el) {{
-                            el.setAttribute('style', 'display:none !important;');
-                        }}
-                        """
-                        driver.execute_script(script)
-                    else:
-                        print('For Hiding Element works with ID and Class Selector only')
-            except Exception as Error:
-                print('Error : ', str(Error))
+        cropped = image.crop((left, top, right, bottom))
+        cropped.save(output_path)
+        print(f"[✓] Element screenshot saved to: {output_path}")
