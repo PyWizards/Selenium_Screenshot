@@ -72,6 +72,10 @@ class Screenshot:
         image_data = base64.b64decode(screenshot_data['data'])
         image = Image.open(BytesIO(image_data))
         image.save(output_path)
+        
+        # restore viewport size
+        self.driver.execute_cdp_cmd("Emulation.clearDeviceMetricsOverride", {})
+        time.sleep(0.5)  # wait render
 
         print(f"[✓] Full-page screenshot saved to: {output_path}")
 
